@@ -7,8 +7,8 @@ import Link from 'next/link';
 
 import React from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { AddNewConfig } from '@/components/AddNewConfig';
-import { DeleteConfig } from '@/components/DeleteConfig';
+import { AddNewConfig } from '@/components/Esquemas/AddNewConfig';
+import { DeleteConfig } from '@/components/Esquemas/DeleteConfig';
 
 interface newSchema {
 	descricao: string
