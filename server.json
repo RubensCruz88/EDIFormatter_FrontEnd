@@ -1,0 +1,60 @@
+{
+  "esquemas": [
+    {
+      "id": 1,
+      "descricao": "arquivo iSIMP",
+      "ativo": true,
+      "publico": true,
+      "tipo": "posicao",
+      "createdAt": "2023-01-19T22:56:37.989Z"
+    },
+    {
+      "id": 2,
+      "descricao": "etiqueta maquina 1",
+      "ativo": false,
+      "publico": true,
+      "tipo": "caractere",
+      "createdAt": "2023-01-19T22:55:37.989Z"
+    },
+    {
+      "descricao": "mais um teste",
+      "ativo": true,
+      "publico": true,
+      "createdAt": "2023-01-24T01:06:27.488Z",
+      "id": 3
+    },
+    {
+      "descricao": "mais um outro teste",
+      "ativo": true,
+      "publico": true,
+      "createdAt": "2023-01-24T01:16:07.065Z",
+      "id": 5
+    }
+  ],
+  "regras": [
+    {
+      "esquemaID": 1,
+      "id": 1,
+      "inicial": 1,
+      "final": 10,
+      "tipo": "caractere",
+      "descricao": "primeiro campo"
+    },
+    {
+      "esquemaID": 1,
+      "id": 2,
+      "inicial": 11,
+      "final": 14,
+      "tipo": "caractere",
+      "descricao": "primeiro campo"
+    },
+    {
+      "esquemaID": 1,
+      "id": 3,
+      "inicial": 15,
+      "final": 20,
+      "tipo": "caractere",
+      "descricao": "primeiro campo"
+    }
+  ]
+}
