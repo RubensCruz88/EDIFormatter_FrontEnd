@@ -30,31 +30,3 @@ export const EsquemasContainer = styled('div', {
 	}
 
 })
-
-export const TabelaEsquemas = styled('table',{
-	width: '100%',
-
-	a: {
-		cursor: 'pointer'
-	},
-
-	tr: {
-		display: 'flex',
-		alignItems: 'center',
-		marginBottom: '1rem',
-	
-		svg: {
-			fontWeight: 'bold'
-		},	
-	},
-
-	'tr td:last-child': {
-		width: '100%'
-	},
-
-	td: {
-		height: 'inherit',
-		paddingRight: '1rem',
-	}
-	
-})

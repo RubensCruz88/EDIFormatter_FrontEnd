@@ -20,6 +20,7 @@
       "descricao": "mais um teste",
       "ativo": true,
       "publico": true,
+      "tipo": "caractere",
       "createdAt": "2023-01-24T01:06:27.488Z",
       "id": 3
     },
@@ -27,6 +28,7 @@
       "descricao": "mais um outro teste",
       "ativo": true,
       "publico": true,
+      "tipo": "caractere",
       "createdAt": "2023-01-24T01:16:07.065Z",
       "id": 5
     }

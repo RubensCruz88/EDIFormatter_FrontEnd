@@ -1,14 +1,13 @@
 import { api } from '@/lib/axios';
 import { GetServerSideProps } from 'next';
-import { ArrowDown, ArrowUp, Pencil, Trash, LockKey, LockKeyOpen, Plus } from 'phosphor-react';
+import { Plus } from 'phosphor-react';
 import { useState } from 'react';
-import { Container, EsquemasContainer, Header, TabelaEsquemas } from './styles';
-import Link from 'next/link';
+import { Container, EsquemasContainer, Header } from './styles';
 
 import React from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { AddNewConfig } from '@/components/Esquemas/AddNewConfig';
-import { DeleteConfig } from '@/components/Esquemas/DeleteConfig';
+import { SchemaRow } from '@/components/Esquemas/SchemaRow';
 
 interface newSchema {
 	descricao: string
@@ -20,7 +19,6 @@ interface Esquema {
 	ativo: Boolean,
 	publico: Boolean,
 	createdAt: Date,
-	isExpanded: Boolean,
 	tipo: 'posicao' | 'caractere'
 }
 
@@ -29,19 +27,9 @@ interface EsquemaProps {
 }
 
 export default function Esquemas(props: EsquemaProps) {
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 	const [esquemas,setEsquemas] = useState<Esquema[]>(props.esquemas)
 
-	function handleDetalhes(id: string) {
-		const esquema = esquemas.find(esquema => esquema.id === id)
-	
-		if(esquema) {
-			esquema.isExpanded = !esquema.isExpanded
-
-			setEsquemas([...esquemas])
-		}
-	}
-	
 	async function addNewSchema(data: newSchema) {
 		const { descricao } = data
 
@@ -87,25 +75,13 @@ export default function Esquemas(props: EsquemaProps) {
 				</Dialog.Root>
 
 
-				<TabelaEsquemas>
-					<tbody>
-						{esquemas.map(esquema => {
-							return (
-								<tr key={esquema.id} >
-									<td><a onClick={() => handleDetalhes(esquema.id)}>{esquema.isExpanded ? <ArrowUp weight='bold' /> : <ArrowDown weight='bold' />}</a></td>
-									<td>{esquema.ativo ? <LockKeyOpen weight='bold' color='#228C22'/>: <LockKey weight='bold' color='#8B0000'/>}</td>
-									<td><Link href={`/esquemas/${esquema.id}`}><Pencil weight='bold'/></Link></td>
-									<td>
-										<DeleteConfig schemaKey={esquema.id} deleteSchema={deleteSchema}/>
-									</td>
-									<td>{esquema.descricao}</td>
-									
-								</tr>
-							)							
-						})}
-
-					</tbody>
-				</TabelaEsquemas>
+				<div className='wrapper'>
+					{esquemas.map(esquema => {
+						return (
+							<SchemaRow key={esquema.id} esquema={esquema} deleteSchema={deleteSchema}/>
+						)							
+					})}
+				</div>
 			</EsquemasContainer>
 
 		</Container>
@@ -114,13 +90,7 @@ export default function Esquemas(props: EsquemaProps) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
 	const response = await api.get('/esquemas')
-	const responseEsquemas: Esquema[] = response.data
-
-	const esquemas = responseEsquemas.map(esquema => {
-		esquema.isExpanded = false
-
-		return esquema
-	})
+	const esquemas: Esquema[] = response.data
 
 	return {
 		props: {
