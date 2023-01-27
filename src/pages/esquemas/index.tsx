@@ -60,6 +60,24 @@ export default function Esquemas(props: EsquemaProps) {
 		}
 	}
 
+	async function handleBloqueio(id: string) {
+		const tempEsquemas = [...esquemas]
+		const esquemaAtualIndice = tempEsquemas.findIndex( esquema => esquema.id === id);
+
+		if (esquemaAtualIndice >= 0) {
+			const ativo = !esquemas[esquemaAtualIndice].ativo
+			esquemas[esquemaAtualIndice].ativo = ativo
+
+			const response = await api.patch(`/esquemas/${id}`,{
+				ativo
+			});
+
+			if(response.status === 200) {
+				setEsquemas(tempEsquemas);
+			}
+		}
+	}
+
 	return (
 		<Container>
 			<Header>Esquemas</Header>
@@ -78,7 +96,11 @@ export default function Esquemas(props: EsquemaProps) {
 				<div className='wrapper'>
 					{esquemas.map(esquema => {
 						return (
-							<SchemaRow key={esquema.id} esquema={esquema} deleteSchema={deleteSchema}/>
+							<SchemaRow 
+								key={esquema.id} 
+								esquema={esquema} 
+								deleteSchema={deleteSchema} 
+								handleBloqueio={handleBloqueio}/>
 						)							
 					})}
 				</div>

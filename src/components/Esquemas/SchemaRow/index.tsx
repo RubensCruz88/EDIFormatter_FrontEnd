@@ -18,10 +18,16 @@ interface Schema {
 interface SchemaProps {
 	esquema: Schema,
 	deleteSchema: (data: any) => Promise<void>;
+	handleBloqueio: (data: any) => Promise<void>;
 }
 
-export function SchemaRow({ esquema, deleteSchema }: SchemaProps) {
+export function SchemaRow({ esquema, deleteSchema, handleBloqueio }: SchemaProps) {
 	const [open, setOpen] = useState(false)
+
+	function onHandleBloqueio() {
+		handleBloqueio(esquema.id)
+	}
+
 
 	return (
 		<Root open={open} onOpenChange={setOpen}>
@@ -30,7 +36,7 @@ export function SchemaRow({ esquema, deleteSchema }: SchemaProps) {
 					{open ? <ArrowUp weight='bold' size={20} /> : <ArrowDown weight='bold' size={20} />}
 				</Collapsible.Trigger>
 
-				<a>
+				<a onClick={onHandleBloqueio}>
 					{esquema.ativo ? <LockKeyOpen weight='bold' color='#228C22'/>: <LockKey weight='bold' color='#8B0000'/>}
 				</a>
 

@@ -11,7 +11,7 @@
     {
       "id": 2,
       "descricao": "etiqueta maquina 1",
-      "ativo": false,
+      "ativo": true,
       "publico": true,
       "tipo": "caractere",
       "createdAt": "2023-01-19T22:55:37.989Z"
@@ -26,7 +26,7 @@
     },
     {
       "descricao": "mais um outro teste",
-      "ativo": true,
+      "ativo": false,
       "publico": true,
       "tipo": "caractere",
       "createdAt": "2023-01-24T01:16:07.065Z",

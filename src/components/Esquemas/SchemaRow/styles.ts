@@ -8,7 +8,11 @@ export const Root = styled(Collapsible.Root,{
 		display: 'grid',
 		gridTemplateColumns: 'min-content min-content min-content min-content auto',
 		columnGap: '1rem',
-		lineHeight: '1rem'
+		lineHeight: '1rem',
+
+		a: {
+			cursor: 'pointer'
+		}
 	
 	}
 })
