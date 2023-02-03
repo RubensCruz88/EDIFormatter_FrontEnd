@@ -1,7 +1,6 @@
 import { styled } from "@/styles";
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
-
 export const Overlay = styled(AlertDialog.Overlay,{
 	position: 'fixed',
 	width: '100vw',

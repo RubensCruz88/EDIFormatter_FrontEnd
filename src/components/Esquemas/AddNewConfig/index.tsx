@@ -21,8 +21,6 @@ export function AddNewConfig({addNewSchema}: AddNewSchemaProps) {
 	const submitNovoEsquema: SubmitHandler<Inputs> = async (data) => {
 		const { descricao } = data;
 
-
-		
 		addNewSchema({
 			descricao
 		})

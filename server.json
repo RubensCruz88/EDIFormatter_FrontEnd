@@ -37,26 +37,78 @@
     {
       "esquemaID": 1,
       "id": 1,
+      "sequencia": "4",
       "inicial": 1,
       "final": 10,
+      "tamanho": 3,
       "tipo": "caractere",
       "descricao": "primeiro campo"
     },
     {
       "esquemaID": 1,
       "id": 2,
+      "sequencia": "2",
       "inicial": 11,
       "final": 14,
+      "tamanho": 5,
       "tipo": "caractere",
-      "descricao": "primeiro campo"
+      "descricao": "segundo campo"
     },
     {
       "esquemaID": 1,
       "id": 3,
+      "sequencia": "3",
       "inicial": 15,
       "final": 20,
+      "tamanho": 20,
       "tipo": "caractere",
-      "descricao": "primeiro campo"
+      "descricao": "terceiro campo"
+    },
+    {
+      "esquemaID": 1,
+      "id": 4,
+      "sequencia": "8",
+      "inicial": 15,
+      "final": 20,
+      "tamanho": 6,
+      "tipo": "caractere",
+      "descricao": "quarto campo"
+    },
+    {
+      "esquemaID": 1,
+      "id": 5,
+      "sequencia": "1",
+      "inicial": 15,
+      "final": 20,
+      "tamanho": 3,
+      "tipo": "caractere",
+      "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate luctus feugiat. Donec vel nibh lacus. Integer tempus ullamcorper ante, vel suscipit lorem rhoncus ac. Curabitur non turpis ex. Nunc eget pharetra velit. In at augue in lorem lobortis rhoncus nec a nunc. Morbi egestas et augue in rhoncus. Duis et varius nisi."
+    },
+    {
+      "esquemaID": 1,
+      "id": 6,
+      "sequencia": "5",
+      "inicial": 15,
+      "final": 20,
+      "tamanho": 3,
+      "tipo": "caractere",
+      "descricao": "SEXTO campo"
+    },
+    {
+      "esquemaID": 1,
+      "id": 7,
+      "sequencia": "7",
+      "inicial": 15,
+      "final": 20,
+      "tamanho": 3,
+      "tipo": "caractere",
+      "descricao": "setimo campo"
+    },
+    {
+      "sequencia": "6",
+      "tamanho": "30",
+      "descricao": "teste",
+      "id": 8
     }
   ]
 }
