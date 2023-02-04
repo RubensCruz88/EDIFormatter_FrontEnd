@@ -30,7 +30,14 @@ export const MenuBar = styled('div',{
 		display: 'flex',
 		gap: '0.5rem',
 		padding: '0.5rem 1rem',
-		borderRadius: 8
+		borderRadius: 8,
+		background: '$blue300',
+		cursor: 'pointer'
+	},
+
+	'button[disabled]': {
+		cursor: 'not-allowed',
+		opacity: 0.7
 	}
 })
 
@@ -40,8 +47,8 @@ export const Row = styled('div',{
 	gap: '1rem',
 	lineHeight: '1.5rem',
 	margin: '1rem 0',
-	border: '1px solid black',
-	padding: '0.7rem',
+	border: '1px solid $blue300',
+	padding: '0.2rem 1rem',
 	borderRadius: 6,
 
 	span: {
@@ -49,18 +56,13 @@ export const Row = styled('div',{
 		alignItems: 'center',
 	},
 
-	// 'span:last-child': {
-	// 	flexGrow: "inherit"
-	// },
-
 	'.tamanho': {
 		display: 'flex',
 		width: '2rem',
-		background: '#C5C6D0',
+		background: '$blue100',
 		borderRadius: 6,
 		justifyContent: 'center',
 		flexGrow: 'inherit'
-		// maxHeight: '1.5rem',
 		
 	}
 

@@ -2,10 +2,10 @@ import { styled } from "@/styles";
 
 
 export const Container = styled('nav',{
-	backgroundColor: '#B9BBB6',
 	display: 'flex',
 	flexDirection: 'column',
 	padding: '1rem',
+	borderRight: '0.5px solid #C6D2FD',
 
 	'#check': {
 		display: 'none'
@@ -22,6 +22,17 @@ export const Container = styled('nav',{
 		gap: '0.5rem',
 		fontSize: '1.5rem',
 
+		li: {
+			// background: "$blue200",
+			// color: "$blue500",
+			padding: '0.7rem',
+			borderRadius: 8
+		},
+
+		"li:hover": {
+			background: "$blue100",
+			color: '$blue300'
+		},
 		a: {
 			display: 'flex',
 			gap: '0.5rem',

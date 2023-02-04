@@ -18,7 +18,7 @@
     },
     {
       "descricao": "mais um teste",
-      "ativo": true,
+      "ativo": false,
       "publico": true,
       "tipo": "caractere",
       "createdAt": "2023-01-24T01:06:27.488Z",
@@ -31,38 +31,45 @@
       "tipo": "caractere",
       "createdAt": "2023-01-24T01:16:07.065Z",
       "id": 5
+    },
+    {
+      "descricao": "arquivo Prati",
+      "ativo": true,
+      "publico": true,
+      "createdAt": "2023-02-04T19:02:53.156Z",
+      "id": 6
     }
   ],
   "regras": [
     {
       "esquemaID": 1,
       "id": 1,
-      "sequencia": "4",
+      "sequencia": "3",
       "inicial": 1,
       "final": 10,
       "tamanho": 3,
       "tipo": "caractere",
-      "descricao": "primeiro campo"
+      "descricao": "codigo do usuario"
     },
     {
       "esquemaID": 1,
       "id": 2,
-      "sequencia": "2",
+      "sequencia": "1",
       "inicial": 11,
       "final": 14,
-      "tamanho": 5,
+      "tamanho": 20,
       "tipo": "caractere",
-      "descricao": "segundo campo"
+      "descricao": "nome do usuario"
     },
     {
       "esquemaID": 1,
       "id": 3,
-      "sequencia": "3",
+      "sequencia": "2",
       "inicial": 15,
       "final": 20,
-      "tamanho": 20,
+      "tamanho": 14,
       "tipo": "caractere",
-      "descricao": "terceiro campo"
+      "descricao": "CPF/CNPJ"
     },
     {
       "esquemaID": 1,
@@ -77,17 +84,17 @@
     {
       "esquemaID": 1,
       "id": 5,
-      "sequencia": "1",
+      "sequencia": "6",
       "inicial": 15,
       "final": 20,
       "tamanho": 3,
       "tipo": "caractere",
-      "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate luctus feugiat. Donec vel nibh lacus. Integer tempus ullamcorper ante, vel suscipit lorem rhoncus ac. Curabitur non turpis ex. Nunc eget pharetra velit. In at augue in lorem lobortis rhoncus nec a nunc. Morbi egestas et augue in rhoncus. Duis et varius nisi."
+      "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate luctus feugiat. "
     },
     {
       "esquemaID": 1,
       "id": 6,
-      "sequencia": "5",
+      "sequencia": "4",
       "inicial": 15,
       "final": 20,
       "tamanho": 3,
@@ -105,7 +112,7 @@
       "descricao": "setimo campo"
     },
     {
-      "sequencia": "6",
+      "sequencia": "5",
       "tamanho": "30",
       "descricao": "teste",
       "id": 8
