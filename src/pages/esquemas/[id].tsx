@@ -1,11 +1,14 @@
 import { api } from '@/lib/axios';
-import { useEffect, useState } from 'react';
-import { DragDropContext, Draggable, Droppable, DropResult, resetServerContext } from 'react-beautiful-dnd';
-import { Container, MenuBar, Row } from '@/styles/pages/esquemas/esquemaID';
+import { useState } from 'react';
+import { Container, MenuBar } from '@/styles/pages/esquemas/esquemaID';
 import { Header } from './styles';
-import { Download, FloppyDisk, Pencil, Plus, Trash, Upload } from 'phosphor-react';
+import { Download, FloppyDisk, Upload } from 'phosphor-react';
 import { AddNewRule } from '@/components/EsquemaId/AddNewRule';
 import { DeleteRule } from '@/components/EsquemaId/DeleteRule';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Rule } from '@/components/EsquemaId/Rule';
+import { GetServerSideProps } from 'next';
 
 interface NewRule {
 	descricao: string;
@@ -14,7 +17,7 @@ interface NewRule {
 
 interface Regra {
 	// esquemaID: Number;
-	id?: Number;
+	id: Number;
 	sequencia: string;
 	// inicial: Number;
 	// final: Number;
@@ -23,62 +26,16 @@ interface Regra {
 	descricao: string;
 }
 
-interface EsquemaProps {
-	id: string;
-	dados: Regra[]
-}
-
 interface ResponseProps {
 	data: Regra[]
 }
 
-export default function Esquema({ id }: EsquemaProps) {
-	const [regras,setRegras] = useState<Regra[]>([])
+interface PageProps {
+	regrasAPI: Regra[]
+}
 
-	//Função necessária para usar DnD com SSG
-	resetServerContext()
-
-	useEffect(() => {
-		const getData = async () => {
-			const response: ResponseProps = await api.get(`/regras`,{
-				params: {
-					id,
-					_sort: 'sequencia'
-				}
-			});
-
-			setRegras(response.data)
-		}
-
-		const itensStorage = localStorage.getItem('schema')
-
-		if(itensStorage) {
-			const regraFormatadas = JSON.parse(itensStorage)
-
-			setRegras(regraFormatadas)
-		} else {
-			getData()
-		}
-
-	},[])
-
-	useEffect(() => {
-		localStorage.setItem('schema', JSON.stringify(regras) )
-	},[regras])
-
-	const onDragEnd = (result: DropResult) => {
-		const { source, destination } = result
-
-		if(!destination) return
-
-		const items = Array.from(regras)
-		const [ newOrder ] = items.splice(source.index, 1)
-
-		items.splice(destination.index, 0, newOrder)
-
-		setRegras(items)
-
-	}
+export default function Esquema({ regrasAPI }: PageProps) {
+	const [regras,setRegras] = useState<Regra[]>(regrasAPI)
 
 	function addNewRule(data: NewRule) {
 		const { descricao, tamanho} = data
@@ -87,6 +44,7 @@ export default function Esquema({ id }: EsquemaProps) {
 		const novaSequencia = (ultimaSequencia + 1).toString()
 
 		const novaRegra: Regra = {
+			id: 1,
 			sequencia: novaSequencia,
 			tamanho,
 			descricao	
@@ -128,6 +86,18 @@ export default function Esquema({ id }: EsquemaProps) {
 
 	}
 
+	function move(from: number, to: number) {
+		const novasRegras = [...regras]
+		const dragged = novasRegras[from];
+		
+		novasRegras.splice(from, 1)
+
+		novasRegras.splice(to, 0, dragged)
+
+		setRegras(novasRegras)
+	}
+
+
 	return (
 		<Container>
 			<Header>Layout do Esquema</Header>
@@ -139,38 +109,35 @@ export default function Esquema({ id }: EsquemaProps) {
 				<button onClick={saveRules}><FloppyDisk />Salvar</button>
 			</MenuBar>
 
-			<DragDropContext onDragEnd={onDragEnd}>
-				<Droppable droppableId='regras'>
-					{(provided) => (
-						<div className='regras' {...provided.droppableProps} ref={provided.innerRef} placeholder={"teste"}>
-							{regras.map(({sequencia, tamanho,descricao}, index) => {
-								return (
-									<Draggable key={sequencia} draggableId={sequencia} index={index}>
-										{(provided1) => (
-											<Row
-												className='row'
-												ref={provided1.innerRef} 
-												{...provided1.draggableProps} 
-												{...provided1.dragHandleProps}
-											>
-												<span title='Editar'><Pencil weight='bold'/></span>
-												<DeleteRule sequencia={sequencia} deleteRule={deleteRule}>
-													<span title='Excluir'><Trash weight='bold' size={16}/></span>
-												</DeleteRule>
-												<span title='Tamanho do campo' className='tamanho'>{tamanho.toString()}</span>
-												<span title='Descrição' className='descricao'>{descricao}</span>
-												{/* {provided.placeholder} */}
-											</Row>
-										)}
-									</Draggable>
-								)
-							})}
-						</div>
-					)}
-				</Droppable>
-			</DragDropContext> 
+			<DndProvider backend={HTML5Backend}>
+				<div className='ruleRow'>
+					{regras.map((regra, index) => {
+							return (
+								<Rule regra={regra} index={index} move={move} />
+							)
+					})}
+				</div>
+			</DndProvider>
 
 		</Container>
 	)
 
+}
+
+export const getServerSideProps: GetServerSideProps = async (props) => {
+	const { query } = props
+	const esquemaID = query.id
+
+	const response: ResponseProps = await api.get(`/regras`,{
+		params: {
+			esquemaID,
+			_sort: 'sequencia'
+		}
+	});
+
+	return {
+		props: {
+			regrasAPI: response.data
+		}
+	}
 }
