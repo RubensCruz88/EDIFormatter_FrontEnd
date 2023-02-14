@@ -1,6 +1,5 @@
 import { styled } from "@/styles";
 
-
 export const Container = styled('div',{
 	display: 'flex',
 	flexDirection: 'column',
@@ -15,7 +14,7 @@ export const Header = styled('div',{
 	padding: '0 0 0.5rem 1rem'
 })
 
-export const EsquemasContainer = styled('div', {
+export const SchemasContainer = styled('div', {
 	paddingLeft: '2rem',
 	marginRight: '3rem',
 

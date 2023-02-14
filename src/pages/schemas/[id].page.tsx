@@ -15,7 +15,7 @@ interface NewRule {
 	tamanho: number;
 }
 
-interface Regra {
+interface Schema {
 	// esquemaID: Number;
 	id: Number;
 	sequencia: string;
@@ -27,46 +27,46 @@ interface Regra {
 }
 
 interface ResponseProps {
-	data: Regra[]
+	data: Schema[]
 }
 
 interface PageProps {
-	regrasAPI: Regra[]
+	regrasAPI: Schema[]
 }
 
 export default function Esquema({ regrasAPI }: PageProps) {
-	const [regras,setRegras] = useState<Regra[]>(regrasAPI)
+	const [schemas,setSchemas] = useState<Schema[]>(regrasAPI)
 
 	function addNewRule(data: NewRule) {
 		const { descricao, tamanho} = data
 
-		const ultimaSequencia = parseInt(regras[regras.length - 1].sequencia)
+		const ultimaSequencia = parseInt(schemas[schemas.length - 1].sequencia)
 		const novaSequencia = (ultimaSequencia + 1).toString()
 
-		const novaRegra: Regra = {
+		const novaRegra: Schema = {
 			id: 1,
 			sequencia: novaSequencia,
 			tamanho,
 			descricao	
 		}
 		
-		setRegras([...regras,novaRegra])
+		setSchemas([...schemas,novaRegra])
 	}
 
 	function deleteRule(sequencia: string) {
-		const novasRegras = regras.filter(regra => regra.sequencia !== sequencia)
+		const novasRegras = schemas.filter(schema => schema.sequencia !== sequencia)
 
-		setRegras(novasRegras)
+		setSchemas(novasRegras)
 	}
 
 	async function saveRules() {
-		const regrasSequenciaOrdenada = regras.map((regra,index) => {
-			regra.sequencia = (index + 1).toString();
+		const regrasSequenciaOrdenada = schemas.map((schema,index) => {
+			schema.sequencia = (index + 1).toString();
 
-			return regra
+			return schema
 		})
 
-		const regrasRetorno: Regra[] = []
+		const regrasRetorno: Schema[] = []
 
 		for await (const regra of regrasSequenciaOrdenada){
 			if(regra.id){
@@ -82,19 +82,19 @@ export default function Esquema({ regrasAPI }: PageProps) {
 
 		localStorage.removeItem('schema');
 
-		setRegras(regrasRetorno)
+		setSchemas(regrasRetorno)
 
 	}
 
 	function move(from: number, to: number) {
-		const novasRegras = [...regras]
+		const novasRegras = [...schemas]
 		const dragged = novasRegras[from];
 		
 		novasRegras.splice(from, 1)
 
 		novasRegras.splice(to, 0, dragged)
 
-		setRegras(novasRegras)
+		setSchemas(novasRegras)
 	}
 
 
@@ -111,9 +111,9 @@ export default function Esquema({ regrasAPI }: PageProps) {
 
 			<DndProvider backend={HTML5Backend}>
 				<div className='ruleRow'>
-					{regras.map((regra, index) => {
+					{schemas.map((schema, index) => {
 							return (
-								<Rule regra={regra} index={index} move={move} />
+								<Rule regra={schema} index={index} move={move} />
 							)
 					})}
 				</div>

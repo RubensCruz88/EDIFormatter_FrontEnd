@@ -2,23 +2,18 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { CloseButton, Content, Overlay, SaveButton } from './styles';
 import { FloppyDisk, X } from 'phosphor-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useContext } from 'react';
+import { SchemasContext } from '../../contexts/SchemasContext';
 
 type Inputs = {
 	descricao: string
 }
 
-interface Esquema {
-	descricao: string
-}
-
-interface AddNewSchemaProps {
-	addNewSchema: (data: Esquema) => Promise<void>
-}
-
-export function AddNewConfig({addNewSchema}: AddNewSchemaProps) {
+export function AddNewSchema() {
+	const { addNewSchema } = useContext(SchemasContext)
 	const {register, handleSubmit } = useForm<Inputs>();
 
-	const submitNovoEsquema: SubmitHandler<Inputs> = async (data) => {
+	const submitNewSchema: SubmitHandler<Inputs> = async (data) => {
 		const { descricao } = data;
 
 		addNewSchema({
@@ -37,7 +32,7 @@ export function AddNewConfig({addNewSchema}: AddNewSchemaProps) {
 					<X size={24}/>
 				</CloseButton>
 
-				<form onSubmit={handleSubmit(submitNovoEsquema)} >
+				<form onSubmit={handleSubmit(submitNewSchema)} >
 					<input type="text" placeholder='Descrição' required {...register('descricao')} />
 
 					<SaveButton>

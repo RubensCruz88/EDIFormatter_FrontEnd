@@ -13,9 +13,9 @@ export default function Menu() {
 
 			<ul>
 				<li><Link href="/"><HouseLine /><span>Home</span></Link></li>
-				<li><Link href="/esquemas"><AddressBook /><span>Esquemas</span></Link></li>
-				<li><Link href="/formatar"><PlayCircle /><span>Formatar</span></Link></li>
-				<li><Link href="/historico"><Hourglass /><span>Historico</span></Link></li>
+				<li><Link href="/schemas"><AddressBook /><span>Esquemas</span></Link></li>
+				<li><Link href="/format"><PlayCircle /><span>Formatar</span></Link></li>
+				<li><Link href="/historic"><Hourglass /><span>Historico</span></Link></li>
 			</ul>
 		</Container>
 	)
