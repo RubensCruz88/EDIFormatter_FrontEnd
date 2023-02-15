@@ -1,5 +1,6 @@
+import { SchemaIdContext } from "@/pages/schemas/contexts/SchemaIdContext";
 import { Pencil, Trash, DotsSixVertical } from "phosphor-react";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { useDrag, useDrop } from 'react-dnd';
 import { DeleteRule } from "../DeleteRule";
 import { Row } from "./styles";
@@ -12,15 +13,15 @@ interface Rule {
 }
 
 interface RuleProps {
-	regra: Rule,
-	index: Number,
-	move: (from: any, to: any) => void
+	rule: Rule,
+	index: number,
 }
 
-export function Rule({ regra, index, move }: RuleProps) {
+export function Rule({ rule, index }: RuleProps) {
+	const { reorderRules } = useContext(SchemaIdContext)
 	const ref = useRef<HTMLDivElement>(null);
 	const HTMLdropRef = useRef<HTMLDivElement>(null)
-	const id = regra.id
+	const id = rule.id
 
 	const [{isDragging},dragRef] = useDrag({
 		type: 'Rule',
@@ -59,9 +60,7 @@ export function Rule({ regra, index, move }: RuleProps) {
 				return
 			}
 
-			move(draggedIndex, targetIndex)
-
-			console.log(item)
+			reorderRules(draggedIndex, targetIndex)
 
 			item.index = targetIndex
 		}
@@ -70,18 +69,15 @@ export function Rule({ regra, index, move }: RuleProps) {
 	dragRef(ref)
 	dropRef(HTMLdropRef)
 
-	function deleteRule(sequencia: string) {
-	}
-
 	return (
 		<Row ref={HTMLdropRef} id={id.toString()} isDragging={isDragging} data-handler-id={handlerId}>
-			<span title='Mover' className="mover" ref={ref}><DotsSixVertical weight='bold'/></span>
-			<button title='Editar' className="editar"><Pencil weight='bold'/></button>
-			<DeleteRule sequencia={regra.sequencia} deleteRule={deleteRule}>
-				<button title='Excluir' className="excluir"><Trash weight='bold' size={16}/></button>
+			<span title='Mover' className="draggable" ref={ref}><DotsSixVertical weight='bold'/></span>
+			<button title='Editar' className="edit"><Pencil weight='bold'/></button>
+			<DeleteRule sequence={rule.sequencia} >
+				<button title='Excluir' className="delete"><Trash weight='bold' size={16}/></button>
 			</DeleteRule>
-			<span title='Tamanho do campo' className='tamanho'>{regra.tamanho.toString()}</span>
-			<span title='Descrição' className='descricao'>{regra.descricao}</span>
+			<span title='Tamanho do campo' className='fieldSize'>{rule.tamanho.toString()}</span>
+			<span title='Descrição'>{rule.descricao}</span>
 
 		</Row>
 	)

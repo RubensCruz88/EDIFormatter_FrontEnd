@@ -20,15 +20,15 @@ export const Content = styled(AlertDialog.Content,{
 	transform: 'translate(-50%,-50%)',
 	padding: '1.5rem',
 
-	'.titulo': {
+	'.title': {
 		marginBottom: '1rem'
 	},
 
-	'.descricao': {
+	'.description': {
 		marginBottom: '1.5rem'
 	},
 
-	'.botoes': {
+	'.buttonRow': {
 		display: 'flex',
 		gap: '1rem',
 		minWidth: 'calc(100vw/3)',
@@ -45,12 +45,12 @@ export const Content = styled(AlertDialog.Content,{
 
 })
 
-export const Cancelar = styled(AlertDialog.Cancel,{
+export const Cancel = styled(AlertDialog.Cancel,{
 	background: '#98BF64',
 	color: '#32612D'
 })
 
-export const Confirmar = styled(AlertDialog.Action, {
+export const Confirm = styled(AlertDialog.Action, {
 	background: '#FF5C5C',
 	color: '#960018'
 })

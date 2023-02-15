@@ -1,7 +1,7 @@
 import { styled } from '@/styles';
 import * as Dialog from '@radix-ui/react-dialog';
 
-export const Adicionar = styled('button',{
+export const Add = styled('button',{
 	cursor: 'pointer',
 })
 

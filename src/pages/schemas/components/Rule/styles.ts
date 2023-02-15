@@ -18,11 +18,11 @@ export const Row = styled('div',{
 		alignItems: 'center',
 	},
 
-	'.editar:hover': {
+	'.edit:hover': {
 		color: 'Green'
 	},
 
-	'.excluir:hover': {
+	'.delete:hover': {
 		color: "Red"
 	},
 
@@ -31,11 +31,11 @@ export const Row = styled('div',{
 		alignItems: 'center',
 	},
 
-	'.mover': {
+	'.draggable': {
 		cursor: 'grab'
 	},
 
-	'.tamanho': {
+	'.fieldSize': {
 		display: 'flex',
 		width: '2rem',
 		background: '$blue100',

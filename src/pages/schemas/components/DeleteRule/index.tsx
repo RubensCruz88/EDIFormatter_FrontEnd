@@ -1,17 +1,18 @@
+import { SchemaIdContext } from '@/pages/schemas/contexts/SchemaIdContext';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import { ReactNode } from 'react';
-import { Cancelar, Confirmar, Content, Overlay } from './styles';
+import { ReactNode, useContext } from 'react';
+import { Cancel, Confirm, Content, Overlay } from './styles';
 
 interface DeleteRuleProps {
 	children: ReactNode;
-	deleteRule: (sequencia: string) => void;
-	sequencia: string
+	sequence: string
 }
 
+export function DeleteRule({ sequence, children }: DeleteRuleProps) {
+	const { deleteRule } = useContext(SchemaIdContext)
 
-export function DeleteRule({ sequencia, deleteRule, children }: DeleteRuleProps) {
 	function handleDeleteRule() {
-		deleteRule(sequencia)
+		deleteRule(sequence)
 	}
 
 	return (
@@ -24,22 +25,22 @@ export function DeleteRule({ sequencia, deleteRule, children }: DeleteRuleProps)
 				<Overlay />
 				
 				<Content>
-					<AlertDialog.Title className='titulo'>
+					<AlertDialog.Title className='title'>
 						Confirma exclusão?
 					</AlertDialog.Title>
 
-					<AlertDialog.Description className='descricao'>
+					<AlertDialog.Description className='description'>
 						confirma exclusão da regra? Esta ação não poderá ser cancelada
 					</AlertDialog.Description>
 
-					<div className='botoes'>
-						<Cancelar>
+					<div className='buttonRow'>
+						<Cancel>
 							fechar
-						</Cancelar>
+						</Cancel>
 
-						<Confirmar onClick={handleDeleteRule}>
+						<Confirm onClick={handleDeleteRule}>
 							Confirmar
-						</Confirmar>
+						</Confirm>
 					</div>
 				</Content>
 
