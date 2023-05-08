@@ -1,7 +1,7 @@
 import { Container } from './styles';
 import Link from 'next/link';
 
-import { List, AddressBook, PlayCircle, Hourglass, HouseLine } from 'phosphor-react';
+import { List, AddressBook, Hourglass, HouseLine } from 'phosphor-react';
 
 export default function Menu() {
 	return (
@@ -14,7 +14,6 @@ export default function Menu() {
 			<ul>
 				<li><Link href="/"><HouseLine /><span>Home</span></Link></li>
 				<li><Link href="/schemas"><AddressBook /><span>Esquemas</span></Link></li>
-				<li><Link href="/format"><PlayCircle /><span>Formatar</span></Link></li>
 				<li><Link href="/historic"><Hourglass /><span>Historico</span></Link></li>
 			</ul>
 		</Container>
