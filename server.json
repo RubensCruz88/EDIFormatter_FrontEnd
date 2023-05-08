@@ -14,6 +14,7 @@
       "ativo": true,
       "publico": true,
       "tipo": "caractere",
+	  "caractere": ",",
       "createdAt": "2023-01-19T22:55:37.989Z"
     },
     {
@@ -22,7 +23,8 @@
       "publico": true,
       "tipo": "caractere",
       "createdAt": "2023-01-24T01:06:27.488Z",
-      "id": 3
+      "id": 3,
+	  "caractere": "|"
     },
     {
       "descricao": "mais um outro teste",
@@ -112,10 +114,28 @@
       "descricao": "setimo campo"
     },
     {
-      "sequencia": "5",
-      "tamanho": "30",
-      "descricao": "teste",
-      "id": 8
+      "esquemaID": 3,
+      "id": 8,
+      "sequencia": "1",
+      "descricao": "primeiro"
+    },
+    {
+      "esquemaID": 3,
+      "id": 9,
+      "sequencia": "2",
+      "descricao": "segundo"
+    },
+    {
+      "esquemaID": 3,
+      "id": 10,
+      "sequencia": "3",
+      "descricao": "outro"
+    },
+    {
+      "esquemaID": 3,
+      "id": 11,
+      "sequencia": "4",
+      "descricao": "ultimo"
     }
   ]
 }

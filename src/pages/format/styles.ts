@@ -36,5 +36,11 @@ export const Form = styled('form',{
 		border: '1px solid gray',
 		padding: '0.5rem',
 		flexGrow: 1
+	},
+
+	"textarea": {
+		border: "1px solid black",
+		borderRadius: 8,
+		padding: '1rem'
 	}
 })
