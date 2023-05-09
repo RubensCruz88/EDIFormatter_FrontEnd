@@ -44,7 +44,7 @@ handler.post( (req: RequestUpload, res) => {
 
 		unlink(`./public/uploads/${file.filename}`,(err) => {
 			if(err) {
-				console.log(err)
+				return res.status(400).json({error: err})
 			}
 		})
 

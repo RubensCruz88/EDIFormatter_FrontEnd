@@ -50,7 +50,7 @@ handler.post(async (req, res) => {
 
 	if(tipo === 'caractere') {
 		if(!caractere) {
-			return ""
+			return res.status(400).json({error: "caractere não informado"})
 		}
 
 		const formattedText = formatData.formatByCharacter(caractere)
@@ -66,17 +66,7 @@ handler.post(async (req, res) => {
 		return res.status(202).json({spreadsheet: formattedBodyToSpreadsheet})
 	}
 
-
-	// const formattedHeaderToSpreadsheet = formattedData.header.map(column => {
-	// 	return {value: column}
-	// })
-
-
-	// const spreadsheet = []
-	// spreadsheet.push(formattedHeaderToSpreadsheet)
-	// formattedBodyToSpreadsheet.map(row => spreadsheet.push(row))
-
-	return res.status(202).json({teste:  "TESTE"})
+	return res.send(404)
 })
 
 export default handler
